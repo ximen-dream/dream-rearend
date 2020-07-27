@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Dream-Server-System
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.url}:8001
+      config:
+        server-addr: ${nacos.url}:8001
+        group: DEFAULT_GROUP  # 指定配置分组名称，这里保持默认的DEFAULT_GROUP即可
+        prefix: dream-server-system    # 指定在nacos配置中心对应微服务配置的前缀，这里指定为febs-auth
+        file-extension: yaml  # 指定微服务配置文件的类型，可选值有yaml和properties，这里指定为yaml。

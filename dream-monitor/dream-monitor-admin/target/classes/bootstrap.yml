@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Dream-Monitor-Admin
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacos.url}:8001
+        group: DEFAULT_GROUP
+        prefix: dream-monitor-admin
+        file-extension: yaml

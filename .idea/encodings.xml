@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/deream-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/deream-register-eureka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-gateway-zuul/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-monitor/dream-monitor-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-server/dream-server-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dream-server/dream-server-test/src/main/java" charset="UTF-8" />
+  </component>
+</project>

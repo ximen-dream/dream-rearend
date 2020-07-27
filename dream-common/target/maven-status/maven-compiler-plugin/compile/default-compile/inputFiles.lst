@@ -1,0 +1,8 @@
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\entity\DreamResponse.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\annotation\EnableDreamAuthExceptionHandler.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\config\DreamAuthExceptionConfigure.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\exception\DreamAuthException.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\utils\DreamUtil.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\handler\BaseExceptionHandler.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\handler\DreamAccessDeniedHandler.java
+C:\Users\Administrator\Desktop\Github\dream-rearend\dream-common\src\main\java\com\ximen\common\handler\DreamAuthExceptionEntryPoint.java

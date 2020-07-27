@@ -1,0 +1,42 @@
+server:
+  port: 7001
+  servlet:
+    context-path: /register-eureka
+
+spring:
+  application:
+    name: Dream-Register-Eureka
+  security:
+    user:
+      name: dream
+      password: dream
+  boot:
+    admin:
+      client:
+        url: http://localhost:7401
+        username: dream
+        password: dream
+info:
+  app:
+    name: ${spring.application.name}
+    description: "DREAM-Register-eureka服务注册中心"
+    version: "1.0-SNAPSHOT"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #表示将SBA客户端的所有监控端点都暴露给SBA服务端；
+  endpoint:
+    health:
+      show-details: ALWAYS # 表示总是展示详细的健康信息
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    instance-info-replication-interval-seconds: 30
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/eureka/
