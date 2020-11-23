@@ -1,0 +1,78 @@
+version: '3'
+services:
+  redis:
+    image: "redis"
+    network_mode: "cloudnet"
+    container_name: "redis"
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/conf/redis.conf:/etc/redis/redis.conf:rw
+      - ./redis/data/redis:/data:rw
+    command:
+      redis-server /etc/redis/redis.conf --appendonly yes
+  nacos:
+    image: nacos/nacos-server:1.2.1
+    container_name: nacos
+    network_mode: "cloudnet"
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_PLATFORM: mysql #数据源平台 仅支持mysql或不保存empty
+      MODE: standalone
+      MYSQL_SERVICE_HOST: 47.100.22.236
+      MYSQL_SERVICE_DB_NAME: dream_nacos
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: prinfo
+      NACOS_APPLICATION_PORT: 8848
+      JVM_XMS: 512m
+      JVM_MMS: 320m
+    volumes:
+      - ./nacos/standalone-logs/:/home/nacos/logs
+      - ./nacos/plugins/:/home/nacos/plugins
+      - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
+    ports:
+      - "8848:8848"
+  gateway:
+    container_name: "gateway"
+    network_mode: "cloudnet"
+    restart: always
+    ports:
+      - 7301:7301
+    build:
+      context: ../dockerfiles/gateway/
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+  auth:
+    container_name: "auth"
+    network_mode: "cloudnet"
+    restart: always
+    ports:
+      - 7101:7101
+    build:
+      context: ../dockerfiles/auth/
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+  system:
+    container_name: "system"
+    network_mode: "cloudnet"
+    restart: always
+    ports:
+      - 7201:7201
+    build:
+      context: ../dockerfiles/system/
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+

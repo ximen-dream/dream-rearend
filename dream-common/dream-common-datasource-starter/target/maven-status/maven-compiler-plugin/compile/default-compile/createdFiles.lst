@@ -1,0 +1,3 @@
+com\ximen\common\datasource\starter\annotation\DataPermission.class
+com\ximen\common\datasource\starter\config\DreamDataSourceAutoConfigure.class
+com\ximen\common\datasource\starter\inteceptor\DataPermissionInterceptor.class

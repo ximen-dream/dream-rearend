@@ -1,7 +1,7 @@
 package com.ximen.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ximen.common.entity.system.UserRole;
+import com.ximen.common.core.entity.system.UserRole;
 import org.apache.ibatis.annotations.Param;
 
 /**

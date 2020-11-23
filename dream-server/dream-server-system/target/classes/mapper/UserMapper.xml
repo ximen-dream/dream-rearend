@@ -51,4 +51,30 @@
         group by u.username,u.user_id,u.email,u.mobile,u.status,u.create_time,u.ssex,
         u.dept_id,u.last_login_time,u.modify_time,u.description,u.avatar
     </select>
+    <select id="page" resultType="com.ximen.common.core.entity.system.SystemUser">
+        select
+            t_user.user_id,
+            username,
+            email,
+            t_user.create_time,
+            GROUP_CONCAT(t_role.role_id) roleId,
+            GROUP_CONCAT(t_role.ROLE_NAME) roleName
+         from
+            t_user
+         left join t_user_role ON t_user.user_id = t_user_role.user_id
+         left join t_role ON t_user_role.role_id = t_role.role_id
+         <where>
+             <if test="searchType == 1 and searchKey != null and searchKey.trim() != ''">
+                 username like CONCAT('%',#{searchKey},'%')
+             </if>
+             <if test="searchType == 2 and searchKey != null and searchKey.trim() != ''">
+                 email like CONCAT('%',#{searchKey},'%')
+             </if>
+         </where>
+        GROUP BY t_user.USER_ID
+    </select>
+    <!-- 更新用户 -->
+    <update id="update">
+        update t_user set username = #{user.username},email = #{user.email} where user_id = #{user.userId}
+    </update>
 </mapper>

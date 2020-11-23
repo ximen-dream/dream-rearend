@@ -1,0 +1,6 @@
+com\ximen\common\doc\gateway\starter\properties\DreamDocGatewayProperties.class
+com\ximen\common\doc\gateway\starter\handler\DreamDocGatewayHandler.class
+META-INF\spring-configuration-metadata.json
+com\ximen\common\doc\gateway\starter\configure\DreamDocGatewayResourceConfigure.class
+com\ximen\common\doc\gateway\starter\filter\DreamDocGatewayHeaderFilter.class
+com\ximen\common\doc\gateway\starter\configure\DreamDocGatewayAutoConfigure.class

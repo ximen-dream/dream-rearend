@@ -3,8 +3,8 @@ package com.ximen.system.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ximen.common.entity.system.SystemUser;
-import feign.Param;
+import com.ximen.common.core.entity.system.SystemUser;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author zhishun.cai
@@ -21,4 +21,12 @@ public interface UserMapper extends BaseMapper<SystemUser> {
      * @return Ipage
      */
     IPage<SystemUser> findUserDetailPage(Page page, @Param("user") SystemUser user);
+
+    IPage<SystemUser> page(@Param("pageInfo") Page<SystemUser> pageInfo, @Param("searchType") Integer searchType, @Param("searchKey") String searchKey);
+
+    /**
+     * 更新用户
+     * @param user
+     */
+    void update(@Param("user") SystemUser user);
 }

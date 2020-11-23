@@ -1,8 +1,0 @@
-com\ximen\common\config\DreamAuthExceptionConfigure.class
-com\ximen\common\handler\DreamAuthExceptionEntryPoint.class
-com\ximen\common\entity\DreamResponse.class
-com\ximen\common\handler\BaseExceptionHandler.class
-com\ximen\common\annotation\EnableDreamAuthExceptionHandler.class
-com\ximen\common\exception\DreamAuthException.class
-com\ximen\common\handler\DreamAccessDeniedHandler.class
-com\ximen\common\utils\DreamUtil.class

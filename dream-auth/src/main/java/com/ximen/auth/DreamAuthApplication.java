@@ -1,12 +1,9 @@
 package com.ximen.auth;
 
-import com.ximen.common.annotation.DreamCloudApplication;
-import com.ximen.common.annotation.EnableDreamAuthExceptionHandler;
-import com.ximen.common.annotation.EnableDreamLettuceRedis;
+import com.ximen.common.security.starter.annotation.EnableDreamCloudResourceServer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author zhishun.cai
@@ -14,9 +11,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @note
  */
 @SpringBootApplication
-@EnableDreamAuthExceptionHandler
-@EnableDreamLettuceRedis
-@DreamCloudApplication
+@EnableDreamCloudResourceServer
+//@DreamCloudApplication
 @MapperScan("com.ximen.auth.mapper")
 public class DreamAuthApplication {
     public static void main(String[] args) {

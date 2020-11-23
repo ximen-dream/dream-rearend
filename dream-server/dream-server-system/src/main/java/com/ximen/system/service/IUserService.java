@@ -2,8 +2,10 @@ package com.ximen.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ximen.common.entity.QueryRequest;
-import com.ximen.common.entity.system.SystemUser;
+import com.ximen.common.core.dto.response.PageResultDTO;
+import com.ximen.common.core.entity.QueryRequest;
+import com.ximen.common.core.entity.system.SystemUser;
+import com.ximen.common.core.exception.DreamException;
 
 /**
  * @author zhishun.cai
@@ -41,4 +43,32 @@ public interface IUserService extends IService<SystemUser> {
      * @param userIds 用户 id数组
      */
     void deleteUsers(String[] userIds);
+
+    /**
+     * 分页
+     * @param pageNumber
+     * @param pageSize
+     * @param searchType
+     * @param searchKey
+     * @return
+     */
+    PageResultDTO<SystemUser> page(Integer pageNumber, Integer pageSize, Integer searchType, String searchKey);
+
+    /**
+     * 更新用户信息
+     * @param user
+     */
+    void update(SystemUser user);
+
+    /**
+     * 添加用户
+     * @param user
+     */
+    void add(SystemUser user);
+
+    /**
+     * 校验邮箱是否存在
+     * @param email
+     */
+    void checkEmailIsExist(String email) throws DreamException;
 }

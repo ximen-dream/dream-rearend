@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ximen.auth.mapper.UserMapper">
-    <select id="findByName" parameterType="string" resultType="systemUser">
+    <select id="findByName" parameterType="string" resultType="com.ximen.common.core.entity.system.SystemUser">
         SELECT
         u.user_id userId,
         u.username,
@@ -27,5 +27,10 @@
         WHERE  u.username = #{username}
         group by u.username,u.user_id,u.email,u.mobile,u.password, u.status,u.create_time,u.ssex,u.dept_id
 				,u.last_login_time,u.modify_time,u.description,u.avatar
+    </select>
+
+    <select id="findUserDataPermissions" parameterType="long" resultType="userDataPermission">
+        select user_id userId, dept_id deptId from t_user_data_permission
+        where user_id = #{userId}
     </select>
 </mapper>

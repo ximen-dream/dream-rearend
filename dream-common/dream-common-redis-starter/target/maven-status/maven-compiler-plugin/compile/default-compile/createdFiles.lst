@@ -1,0 +1,4 @@
+com\ximen\common\redis\starter\properties\DreamLettuceRedisProperties.class
+com\ximen\common\redis\starter\config\DreamsLettuceRedisAutoConfigure.class
+META-INF\spring-configuration-metadata.json
+com\ximen\common\redis\starter\service\RedisService.class

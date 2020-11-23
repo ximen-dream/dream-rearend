@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "dream.cloud.security",
+      "type": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties",
+      "sourceType": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dream.cloud.security.anon-uris",
+      "type": "java.lang.String",
+      "description": "免认证资源路径，支持通配符 多个值时使用逗号分隔",
+      "sourceType": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties"
+    },
+    {
+      "name": "dream.cloud.security.auth-uri",
+      "type": "java.lang.String",
+      "description": "配置需要认证的uri，默认为所有\/**",
+      "sourceType": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties"
+    },
+    {
+      "name": "dream.cloud.security.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启安全配置",
+      "sourceType": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties"
+    },
+    {
+      "name": "dream.cloud.security.only-fetch-by-gateway",
+      "type": "java.lang.Boolean",
+      "description": "是否只能通过网关获取资源",
+      "sourceType": "com.ximen.common.security.starter.properties.DreamCloudSecurityProperties",
+      "defaultValue": true
+    }
+  ],
+  "hints": []
+}

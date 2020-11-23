@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "dream.doc.gateway",
+      "type": "com.ximen.common.doc.gateway.starter.properties.DreamDocGatewayProperties",
+      "sourceType": "com.ximen.common.doc.gateway.starter.properties.DreamDocGatewayProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dream.doc.gateway.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启网关文档聚合功能",
+      "sourceType": "com.ximen.common.doc.gateway.starter.properties.DreamDocGatewayProperties"
+    },
+    {
+      "name": "dream.doc.gateway.resources",
+      "type": "java.lang.String",
+      "description": "需要暴露doc的服务列表，多个值时用逗号分隔 如 Dream-Auth,Dream-Server-System",
+      "sourceType": "com.ximen.common.doc.gateway.starter.properties.DreamDocGatewayProperties"
+    }
+  ],
+  "hints": []
+}

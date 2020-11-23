@@ -1,0 +1,19 @@
+{
+  "groups": [
+    {
+      "name": "dream.lettuce.redis",
+      "type": "com.ximen.common.redis.starter.properties.DreamLettuceRedisProperties",
+      "sourceType": "com.ximen.common.redis.starter.properties.DreamLettuceRedisProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dream.lettuce.redis.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启Lettuce Redis",
+      "sourceType": "com.ximen.common.redis.starter.properties.DreamLettuceRedisProperties",
+      "defaultValue": true
+    }
+  ],
+  "hints": []
+}

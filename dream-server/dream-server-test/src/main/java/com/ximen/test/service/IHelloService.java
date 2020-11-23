@@ -1,6 +1,6 @@
 package com.ximen.test.service;
 
-import com.ximen.common.entity.DreamServerConstant;
+import com.ximen.common.core.entity.DreamServerConstant;
 import com.ximen.test.fallback.HelloServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

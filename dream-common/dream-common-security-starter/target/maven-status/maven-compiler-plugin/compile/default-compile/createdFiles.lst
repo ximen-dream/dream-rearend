@@ -1,0 +1,8 @@
+com\ximen\common\security\starter\properties\DreamCloudSecurityProperties.class
+com\ximen\common\security\starter\annotation\EnableDreamCloudResourceServer.class
+com\ximen\common\security\starter\configure\DreamCloudSecurityAutoConfigure.class
+com\ximen\common\security\starter\interceptor\DreamServerProtectInterceptor.class
+com\ximen\common\security\starter\configure\DreamCloudResourceServerConfigure.class
+com\ximen\common\security\starter\configure\DreamCloudSecurityInteceptorConfigure.class
+com\ximen\common\security\starter\handler\DreamAuthExceptionEntryPoint.class
+com\ximen\common\security\starter\handler\DreamAccessDeniedHandler.class

@@ -1,7 +1,7 @@
 package com.ximen.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ximen.common.entity.system.Menu;
+import com.ximen.common.core.entity.system.Menu;
 
 import java.util.List;
 

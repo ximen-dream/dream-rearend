@@ -1,0 +1,93 @@
+{
+  "groups": [
+    {
+      "name": "dream.doc",
+      "type": "com.ximen.common.doc.starter.properties.DreamDocProperties",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dream.doc.base-package",
+      "type": "java.lang.String",
+      "description": "接口扫描路径，如Controller路径",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.description",
+      "type": "java.lang.String",
+      "description": "文档描述",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.description-color",
+      "type": "java.lang.String",
+      "description": "文档描述颜色",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties",
+      "defaultValue": "#42b983"
+    },
+    {
+      "name": "dream.doc.description-font-size",
+      "type": "java.lang.String",
+      "description": "文档描述字体大小",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties",
+      "defaultValue": "14"
+    },
+    {
+      "name": "dream.doc.email",
+      "type": "java.lang.String",
+      "description": "联系方式：邮箱",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启doc功能",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "dream.doc.license",
+      "type": "java.lang.String",
+      "description": "协议",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.license-url",
+      "type": "java.lang.String",
+      "description": "协议地址",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.name",
+      "type": "java.lang.String",
+      "description": "联系方式：姓名",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.terms-of-service-url",
+      "type": "java.lang.String",
+      "description": "服务url",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.title",
+      "type": "java.lang.String",
+      "description": "文档标题",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.url",
+      "type": "java.lang.String",
+      "description": "联系方式：个人网站url",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    },
+    {
+      "name": "dream.doc.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "com.ximen.common.doc.starter.properties.DreamDocProperties"
+    }
+  ],
+  "hints": []
+}

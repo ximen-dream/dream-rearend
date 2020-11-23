@@ -1,14 +1,10 @@
 package com.ximen.test;
 
-import com.ximen.common.annotation.DreamCloudApplication;
-import com.ximen.common.annotation.EnableDreamAuthExceptionHandler;
-import com.ximen.common.annotation.EnableDreamOauth2FeignClient;
-import com.ximen.common.annotation.EnableDreamServerProtect;
+import com.ximen.common.security.starter.annotation.EnableDreamCloudResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author zhishun.cai
@@ -16,10 +12,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * @note
  */
 @EnableFeignClients
-@EnableDiscoveryClient
 @SpringBootApplication
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@DreamCloudApplication
+@EnableTransactionManagement
+@EnableDreamCloudResourceServer
 public class DreamServerTestApplication {
     public static void main(String[] args) {
         SpringApplication.run(DreamServerTestApplication.class, args);

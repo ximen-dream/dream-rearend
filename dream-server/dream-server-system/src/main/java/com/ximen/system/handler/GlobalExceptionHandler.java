@@ -1,6 +1,6 @@
 package com.ximen.system.handler;
 
-import com.ximen.common.handler.BaseExceptionHandler;
+import com.ximen.common.core.handler.BaseExceptionHandler;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

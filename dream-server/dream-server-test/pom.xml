@@ -12,6 +12,13 @@
     <artifactId>dream-server-test</artifactId>
     <name>Dream-Server-Test</name>
     <description>Dream-Server-Test测试服务模块</description>
+    <dependencies>
+        <dependency>
+            <groupId>com.ximen</groupId>
+            <artifactId>dream-common-security-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

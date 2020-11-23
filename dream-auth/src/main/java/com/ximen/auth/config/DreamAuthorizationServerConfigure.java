@@ -1,36 +1,34 @@
 package com.ximen.auth.config;
 
-import ch.qos.logback.core.rolling.helper.TokenConverter;
 import com.ximen.auth.properties.DreamAuthProperties;
-import com.ximen.auth.properties.DreamClientsProperties;
-import com.ximen.auth.service.DreamUserDetailService;
+import com.ximen.auth.service.impl.RedisClientDetailsService;
 import com.ximen.auth.translator.DreamWebResponseExceptionTranslator;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
+import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
+import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
+import org.springframework.security.oauth2.provider.token.*;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * @author zhishun.cai
@@ -46,70 +44,73 @@ public class DreamAuthorizationServerConfigure extends AuthorizationServerConfig
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
     @Autowired
-    private DreamUserDetailService userDetailService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserDetailsService userDetailService;
     @Autowired
     private DreamAuthProperties authProperties;
     @Autowired
     private DreamWebResponseExceptionTranslator exceptionTranslator;
     @Autowired
-    private DataSource dataSource;
-    @Autowired
-    private TokenStore tokenStore;
-
-    @Autowired
-    private JwtAccessTokenConverter accessTokenConverter;
+    private RedisClientDetailsService redisClientDetailsService;
 
     @Bean
-    public ClientDetailsService clientDetailsService(DataSource dataSource) {
-        ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
-        ((JdbcClientDetailsService)
-                clientDetailsService).setPasswordEncoder(passwordEncoder);
-        return clientDetailsService;
+    @Lazy
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
+
     /**
-     * 1.客户端详情相关配置
+     * 客户端详情配置
+     * @param clients
+     * @throws Exception
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        DreamClientsProperties[] clientsArray = authProperties.getClients();
-        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-        if (ArrayUtils.isNotEmpty(clientsArray)) {
-            for (DreamClientsProperties client : clientsArray) {
-                if (StringUtils.isBlank(client.getClient())) {
-                    throw new Exception("client不能为空");
-                }
-                if (StringUtils.isBlank(client.getSecret())) {
-                    throw new Exception("secret不能为空");
-                }
-                String[] grantTypes = StringUtils.splitByWholeSeparatorPreserveAllTokens(client.getGrantType(), ",");
-                builder.withClient(client.getClient())
-                        .secret(passwordEncoder.encode(client.getSecret()))
-                        .authorizedGrantTypes(grantTypes)
-                        .scopes(client.getScope());
-            }
-        }
-    }
-
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.tokenStore(tokenStore)
-                .userDetailsService(userDetailService)
-                .authenticationManager(authenticationManager)
-                .tokenServices(defaultTokenServices())
-                .exceptionTranslator(exceptionTranslator);
+        clients.withClientDetails(redisClientDetailsService);
     }
 
     /**
      * redis存储token
      * @return
      */
-//    @Bean
-//    public TokenStore tokenStore() {
-//        return new RedisTokenStore(redisConnectionFactory);
-//    }
+    @Bean
+    public TokenStore tokenStore() {
+        if(authProperties.getEnableJwt()){
+            return new JwtTokenStore(jwtAccessTokenConverter());
+        }else{
+            RedisTokenStore redisTokenStore = new RedisTokenStore(redisConnectionFactory);
+            // 解决每次生成的 token都一样的问题
+            redisTokenStore.setAuthenticationKeyGenerator(oAuth2Authentication -> UUID.randomUUID().toString());
+            return redisTokenStore;
+        }
+    }
+
+    /**
+     * 令牌访问端点
+     * @param endpoints
+     */
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        endpoints.tokenStore(tokenStore())
+                .userDetailsService(userDetailService)
+                .authenticationManager(authenticationManager)
+                .exceptionTranslator(exceptionTranslator)
+                .tokenServices(defaultTokenServices());
+        if (authProperties.getEnableJwt()) {
+            endpoints.accessTokenConverter(jwtAccessTokenConverter());
+        }
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+        DefaultAccessTokenConverter defaultAccessTokenConverter = (DefaultAccessTokenConverter) accessTokenConverter.getAccessTokenConverter();
+        DefaultUserAuthenticationConverter userAuthenticationConverter = new DefaultUserAuthenticationConverter();
+        userAuthenticationConverter.setUserDetailsService(userDetailService);
+        defaultAccessTokenConverter.setUserTokenConverter(userAuthenticationConverter);
+        accessTokenConverter.setSigningKey(authProperties.getJwtAccessKey());
+        return accessTokenConverter;
+    }
 
     /**
      * 数据库存储token
@@ -120,21 +121,31 @@ public class DreamAuthorizationServerConfigure extends AuthorizationServerConfig
 //        return new JdbcTokenStore(dataSource);
 //    }
 
+
+
     @Primary
     @Bean
     public DefaultTokenServices defaultTokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(tokenStore);
-
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
-        tokenServices.setTokenEnhancer(tokenEnhancerChain);
-
+        tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setAccessTokenValiditySeconds(authProperties.getAccessTokenValiditySeconds());
-        tokenServices.setRefreshTokenValiditySeconds(authProperties.getRefreshTokenValiditySeconds());
+        tokenServices.setClientDetailsService(redisClientDetailsService);
         return tokenServices;
     }
+
+    @Bean
+    public ResourceOwnerPasswordTokenGranter resourceOwnerPasswordTokenGranter(AuthenticationManager authenticationManager, OAuth2RequestFactory oAuth2RequestFactory) {
+        DefaultTokenServices defaultTokenServices = defaultTokenServices();
+        if (authProperties.getEnableJwt()) {
+            defaultTokenServices.setTokenEnhancer(jwtAccessTokenConverter());
+        }
+        return new ResourceOwnerPasswordTokenGranter(authenticationManager, defaultTokenServices, redisClientDetailsService, oAuth2RequestFactory);
+    }
+    @Bean
+    public DefaultOAuth2RequestFactory oAuth2RequestFactory() {
+        return new DefaultOAuth2RequestFactory(redisClientDetailsService);
+    }
+
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security){

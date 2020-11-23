@@ -1,7 +1,7 @@
 package com.ximen.system.config;
 
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
-import com.ximen.common.utils.DateUtil;
+import com.ximen.common.core.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;

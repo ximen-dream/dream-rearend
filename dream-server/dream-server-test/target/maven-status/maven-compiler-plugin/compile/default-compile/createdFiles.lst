@@ -1,0 +1,6 @@
+com\ximen\test\fallback\HelloServiceFallback.class
+com\ximen\test\handler\GlobalExceptionHandler.class
+com\ximen\test\DreamServerTestApplication.class
+com\ximen\test\service\IHelloService.class
+com\ximen\test\controller\TestController.class
+com\ximen\test\fallback\HelloServiceFallback$1.class

@@ -28,4 +28,19 @@ public class DreamAuthProperties {
 
     //验证码配置类
     private DreamValidateCodeProperties code = new DreamValidateCodeProperties();
+
+    /**
+     * 是否使用 JWT令牌
+     */
+    private Boolean enableJwt;
+
+    /**
+     * JWT加签密钥
+     */
+    private String jwtAccessKey;
+
+    /**
+     * 社交登录所使用的 Client
+     */
+    private String socialLoginClientId;
 }
