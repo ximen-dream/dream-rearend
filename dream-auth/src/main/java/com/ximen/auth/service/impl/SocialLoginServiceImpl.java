@@ -29,6 +29,7 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.TokenRequest;
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -114,6 +115,7 @@ public class SocialLoginServiceImpl implements SocialLoginService {
     }
 
     @Override
+    @Transactional
     public OAuth2AccessToken bindLogin(BindUser bindUser, AuthUser authUser) throws DreamException {
         SystemUser systemUser = userManager.findByName(bindUser.getBindUsername());
         if (systemUser == null || !passwordEncoder.matches(bindUser.getBindPassword(), systemUser.getPassword())) {

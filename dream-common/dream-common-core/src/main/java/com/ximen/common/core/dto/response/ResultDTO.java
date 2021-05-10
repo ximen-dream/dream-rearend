@@ -37,6 +37,14 @@ public class ResultDTO {
      */
     private Object data;
 
+    public static ResultDTO ok() {
+        return new ResultDTO(ResponseCode.SUCCESS);
+    }
+
+    public static ResultDTO ok(Object obj) {
+        return new ResultDTO(ResponseCode.SUCCESS,obj);
+    }
+
     public ResultDTO(boolean flag, Integer code, String message, Object data) {
         this.flag = flag;
         this.code = code;

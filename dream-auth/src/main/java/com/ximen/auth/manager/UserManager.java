@@ -89,4 +89,8 @@ public class UserManager {
         this.userRoleMapper.insert(userRole);
         return systemUser;
     }
+
+    public void updateUserAvatar(Long userId, String avatar) {
+        userMapper.updateUserAvatar(userId,avatar);
+    }
 }

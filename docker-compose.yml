@@ -1,8 +1,22 @@
 version: '3'
 services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
+    ports:
+      - 7000:80
+    volumes:
+      - ./nginx/master/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/master/wwwroot:/usr/share/nginx/wwwroot
+      - ./nginx/master/logs:/var/log/nginx
   redis:
     image: "redis"
-    network_mode: "cloudnet"
     container_name: "redis"
     restart: always
     ports:
@@ -15,8 +29,12 @@ services:
   nacos:
     image: nacos/nacos-server:1.2.1
     container_name: nacos
-    network_mode: "cloudnet"
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
     depends_on:
       - mysql
     environment:
@@ -26,7 +44,7 @@ services:
       MYSQL_SERVICE_DB_NAME: dream_nacos
       MYSQL_SERVICE_PORT: 3306
       MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: prinfo
+      MYSQL_SERVICE_PASSWORD: zhishun.cai
       NACOS_APPLICATION_PORT: 8848
       JVM_XMS: 512m
       JVM_MMS: 320m
@@ -38,41 +56,33 @@ services:
       - "8848:8848"
   gateway:
     container_name: "gateway"
-    network_mode: "cloudnet"
     restart: always
-    ports:
-      - 7301:7301
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
     build:
-      context: ../dockerfiles/gateway/
+      context: ./dockerfiles/gateway/
       dockerfile: Dockerfile
     depends_on:
-      - mysql
       - redis
       - nacos
   auth:
     container_name: "auth"
-    network_mode: "cloudnet"
     restart: always
-    ports:
-      - 7101:7101
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
     build:
-      context: ../dockerfiles/auth/
+      context: ./dockerfiles/auth/
       dockerfile: Dockerfile
     depends_on:
-      - mysql
       - redis
       - nacos
-  system:
-    container_name: "system"
-    network_mode: "cloudnet"
-    restart: always
-    ports:
-      - 7201:7201
-    build:
-      context: ../dockerfiles/system/
-      dockerfile: Dockerfile
-    depends_on:
-      - mysql
-      - redis
-      - nacos
-
+networks:
+  default:
+    external:
+      name: cloudnet

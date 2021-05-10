@@ -52,11 +52,11 @@ public class DreamAuthorizationServerConfigure extends AuthorizationServerConfig
     @Autowired
     private RedisClientDetailsService redisClientDetailsService;
 
-    @Bean
-    @Lazy
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    @Lazy
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 
     /**

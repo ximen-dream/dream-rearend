@@ -8,6 +8,11 @@ package com.ximen.common.core.entity.constant;
 public interface DreamConstant {
 
     /**
+     * 排序规则：降序
+     */
+    String ORDER_DESC = "descending";
+
+    /**
      * Gateway请求头TOKEN名称（不要有空格）
      */
     String GATEWAY_TOKEN_HEADER = "GatewayToken";

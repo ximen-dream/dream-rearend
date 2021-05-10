@@ -9,6 +9,7 @@ com\ximen\common\core\converter\TimeConverter.class
 com\ximen\common\core\exception\DreamException.class
 com\ximen\common\core\entity\system\Role.class
 com\ximen\common\core\exception\DreamAuthException.class
+com\ximen\common\core\entity\job\Job.class
 com\ximen\common\core\entity\constant\StringConstant.class
 com\ximen\common\core\exception\ValidateCodeException.class
 com\ximen\common\core\entity\CurrentUser.class
@@ -31,6 +32,8 @@ com\ximen\common\core\annotation\DreamCloudApplication.class
 com\ximen\common\core\entity\constant\ParamsConstant.class
 com\ximen\common\core\entity\DreamAuthUser.class
 com\ximen\common\core\entity\constant\GrantTypeConstant.class
+com\ximen\common\core\entity\job\Job$ScheduleStatus.class
+com\ximen\common\core\entity\job\JobLog.class
 com\ximen\common\core\handler\BaseExceptionHandler.class
 com\ximen\common\core\code\EmailCode.class
 com\ximen\common\core\dto\response\PageResultDTO.class

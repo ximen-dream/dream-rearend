@@ -1,6 +1,5 @@
 package com.ximen.system;
 
-import com.ximen.common.core.annotation.DreamCloudApplication;
 import com.ximen.common.security.starter.annotation.EnableDreamCloudResourceServer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableDreamCloudResourceServer
-@MapperScan("com.ximen.system.mapper")
+@MapperScan({"com.ximen.system.system.mapper","com.ximen.system.job.mapper"})
 public class DreamServerSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(DreamServerSystemApplication.class, args);

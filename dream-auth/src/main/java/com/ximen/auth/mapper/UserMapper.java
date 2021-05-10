@@ -3,6 +3,7 @@ package com.ximen.auth.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ximen.common.core.entity.system.SystemUser;
 import com.ximen.common.core.entity.system.UserDataPermission;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,4 +28,11 @@ public interface UserMapper extends BaseMapper<SystemUser> {
      * @return 数据权限
      */
     List<UserDataPermission> findUserDataPermissions(Long userId);
+
+    /**
+     * 更新新用户头像
+     * @param userId
+     * @param avatar
+     */
+    void updateUserAvatar(@Param("userId") Long userId, @Param("avatar") String avatar);
 }

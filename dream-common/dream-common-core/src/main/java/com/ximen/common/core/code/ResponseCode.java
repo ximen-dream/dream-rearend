@@ -18,9 +18,10 @@ public enum ResponseCode {
     ADVICE_UPLOAD_ERROR(false,8,"图片上传失败"),
     ERROR_EXIST_EMAIL(false,9,"邮箱存在"),
     ERROR_EXIST_ROLENAME(false,10,"角色名称已存在"),
-    ERROR_EXIST_USERNAME(false,11,"角色名称已存在"),
+    ERROR_EXIST_USERNAME(false,11,"用户名称已存在"),
     ERROR_UNSUPPORY_SOCIAL_TYPE(false,12,"不支持该第三方登录"),
     BIND_ERROR_USER_OR_PASSWORD(false,13,"绑定系统账号失败，用户名或密码错误！"),
+    ERROR_CRON_EXPRESSION(false,14,"Cron表达式错误！"),
     ;
     private boolean flag;
 

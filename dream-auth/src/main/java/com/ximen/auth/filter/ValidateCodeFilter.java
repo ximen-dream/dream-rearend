@@ -43,7 +43,6 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
         RequestMatcher matcher = new AntPathRequestMatcher(EndpointConstant.OAUTH_TOKEN, HttpMethod.POST.toString());
         String grantType = httpServletRequest.getParameter(ParamsConstant.GRANT_TYPE);
-        String grantType2 = httpServletRequest.getParameter("grant_type");
         System.out.println("grant_type: " + grantType);
         if (matcher.matches(httpServletRequest)
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getParameter(ParamsConstant.GRANT_TYPE), GrantTypeConstant.PASSWORD)) {

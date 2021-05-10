@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ximen.auth.mapper.UserMapper">
+    <update id="updateUserAvatar">
+        update t_user set avatar = #{avatar} where user_id = #{userId}
+    </update>
     <select id="findByName" parameterType="string" resultType="com.ximen.common.core.entity.system.SystemUser">
         SELECT
         u.user_id userId,
