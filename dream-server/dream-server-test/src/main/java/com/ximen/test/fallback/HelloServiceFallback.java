@@ -18,7 +18,7 @@ public class HelloServiceFallback implements FallbackFactory<IHelloService> {
         return new IHelloService() {
             @Override
             public String hello(String name) {
-                log.error("调用febs-server-system服务出错", throwable);
+                log.error("调用dream-server-system服务出错", throwable);
                 return "调用出错";
             }
         };

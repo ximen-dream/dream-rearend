@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableDreamCloudResourceServer
-@MapperScan({"com.ximen.system.system.mapper","com.ximen.system.job.mapper"})
+@MapperScan({"com.ximen.system.system.mapper","com.ximen.system.job.mapper","com.ximen.system.logging.mapper"})
 public class DreamServerSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(DreamServerSystemApplication.class, args);

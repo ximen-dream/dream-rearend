@@ -9,6 +9,7 @@ import com.ximen.common.core.entity.QueryRequest;
 import com.ximen.common.core.entity.system.SystemUser;
 import com.ximen.common.core.exception.DreamException;
 import com.ximen.common.core.utils.DreamUtil;
+import com.ximen.system.logging.annotation.LogAno;
 import com.ximen.system.system.service.IUserRoleService;
 import com.ximen.system.system.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +86,7 @@ public class UserController {
         }
     }
 
+    @LogAno("用户列表")
     @GetMapping("page/{pageNumber}/{pageSize}")
     public ResultDTO page(@PathVariable("pageNumber") Integer pageNumber,@PathVariable("pageSize") Integer pageSize, String searchKey,Integer searchType ){
         PageResultDTO<SystemUser> pageResultDTO = this.userService.page(pageNumber,pageSize,searchType,searchKey);
