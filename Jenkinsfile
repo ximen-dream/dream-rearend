@@ -4,6 +4,7 @@ def harbor_url = "10.8.0.6:20000"
 def harbor_project_name = "dream"
 def harbor_auth = "211bf205-23e9-4910-af1e-da4604665b8c"
 def tag = "v1"
+def selectedProjects = "${project_name}".split(',')
 //def port = "${port}"
 //def imageName = "${project_name}"
 node {
