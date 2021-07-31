@@ -2,7 +2,7 @@ def git_auth = "fd7f73cb-eace-4cfb-a50c-feacab1eaa8a"
 def git_url = "https://github.com/ximen-dream/dream-rearend.git"
 def harbor_url = "10.8.0.6:20000"
 def harbor_project_name = "dream"
-def harbor_auth = "211bf205-23e9-4910-af1e-da4604665b8c"
+def harbor_auth = "b73a1878-5837-453d-a699-a80027b8e7e5"
 def tag = "v1"
 def selectedProjects = "${project_name}".split(',')
 //def port = "${port}"
@@ -17,6 +17,10 @@ node {
         sh "mvn clean install"
     }
     stage("打包、上传镜像") {
+        withCredentials([usernamePassword(credentialsId: "${harbor_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
+            //登录
+            sh "docker login -u ${username} -p ${password} ${harbor_url}"
+        }
        for(int i=0;i<selectedProjects.size();i++){
             //取出每个项目的名称和端口
             def currentProject = selectedProjects[i];
@@ -29,8 +33,6 @@ node {
 
             // 上传镜像
             // 1.打标签
-            sh "docker tag ${imageName} ${harbor_url}/${harbor_project_name}/${imageName}:${tag}"
-
             sh "docker tag ${currentProjectName} ${harbor_url}/${harbor_project_name}/${currentProjectName}:${tag}"
 
             //上传镜像
