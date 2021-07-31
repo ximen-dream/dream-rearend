@@ -1,5 +1,6 @@
-FROM openjdk:8u212-jre
-MAINTAINER DamonCai 782099197@qq.com
-COPY ./target/dream-auth-1.0-SNAPSHOT.jar /dream-auth-1.0-SNAPSHOT.jar
+#FROM java:8
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 EXPOSE 7101
-ENTRYPOINT ["java","-jar","/dream-auth-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]

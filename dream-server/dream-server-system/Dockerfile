@@ -1,4 +1,6 @@
-FROM java:8
-COPY ./dream-server/dream-server-system-1.0-SNAPSHOT.jar /system.jar
+#FROM java:8
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 EXPOSE 7201
-ENTRYPOINT ["java","-jar","/system.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]

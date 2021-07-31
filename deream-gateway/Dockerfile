@@ -1,4 +1,6 @@
-FROM openjdk:8u212-jre
-COPY ./target/deream-gateway-1.0-SNAPSHOT.jar /gateway.jar
+#FROM java:8
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 EXPOSE 7301
-ENTRYPOINT ["java","-jar","/gateway.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
