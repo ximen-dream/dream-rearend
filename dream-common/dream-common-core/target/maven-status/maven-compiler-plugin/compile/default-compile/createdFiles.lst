@@ -34,8 +34,10 @@ com\ximen\common\core\entity\DreamAuthUser.class
 com\ximen\common\core\entity\constant\GrantTypeConstant.class
 com\ximen\common\core\entity\job\Job$ScheduleStatus.class
 com\ximen\common\core\entity\job\JobLog.class
+com\ximen\common\core\utils\RequestHolder.class
 com\ximen\common\core\handler\BaseExceptionHandler.class
 com\ximen\common\core\code\EmailCode.class
 com\ximen\common\core\dto\response\PageResultDTO.class
 com\ximen\common\core\entity\constant\SocialConstant.class
+com\ximen\common\core\entity\logging\Log.class
 com\ximen\common\core\entity\Tree.class

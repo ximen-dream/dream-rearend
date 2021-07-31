@@ -17,6 +17,7 @@ D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\m
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\DreamAuthUser.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\Tree.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\constant\GrantTypeConstant.java
+D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\job\Job.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\DreamResponse.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\QueryRequest.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\code\EmailCode.java
@@ -29,10 +30,13 @@ D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\m
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\dto\response\PageResultDTO.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\annotation\DreamCloudApplication.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\DreamServerConstant.java
+D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\utils\RequestHolder.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\annotation\IsMobile.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\exception\DreamAuthException.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\handler\BaseExceptionHandler.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\system\RoleMenu.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\utils\DateUtil.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\converter\TimeConverter.java
+D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\logging\Log.java
 D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\exception\DreamException.java
+D:\西门小狼狗\4.MyGitHub\dream-rearend\dream-common\dream-common-core\src\main\java\com\ximen\common\core\entity\job\JobLog.java

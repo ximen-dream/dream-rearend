@@ -4,8 +4,6 @@ import com.ximen.common.core.entity.logging.Log;
 import com.ximen.common.core.utils.RequestHolder;
 import com.ximen.system.logging.service.LoggingService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.security.SecurityUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
