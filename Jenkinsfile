@@ -15,6 +15,19 @@ node {
 	stage("安装公共模块") {
         sh "mvn clean install"
     }
+    stage("打包、上传镜像") {
+       for(int i=0;i<selectedProjects.size();i++){
+            //取出每个项目的名称和端口
+            def currentProject = selectedProjects[i];
+            //项目名称
+            def currentProjectName = currentProject.split('@')[0]
+            //项目启动端口
+            def currentProjectPort = currentProject.split('@')[1]
+            sh "mvn -f ${currentProjectName} clean package dockerfile:build"
+            echo "${currentProjectName}完成打包和镜像生产"
+        }
+    }
+
     /**
 	stage('编译打包工程,生成镜像') {
 	    // 1.删除旧镜像
