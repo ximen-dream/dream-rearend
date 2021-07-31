@@ -26,6 +26,17 @@ node {
             def currentProjectPort = currentProject.split('@')[1]
             sh "mvn -f ${currentProjectName} clean package dockerfile:build"
             echo "${currentProjectName}完成打包和镜像生产"
+
+            // 上传镜像
+            // 1.打标签
+            sh "docker tag ${imageName} ${harbor_url}/${harbor_project_name}/${imageName}:${tag}"
+
+            sh "docker tag ${currentProjectName} ${harbor_url}/${harbor_project_name}/${currentProjectName}:${tag}"
+
+            //上传镜像
+            sh "docker push ${harbor_url}/${harbor_project_name}/${currentProjectName}:${tag}"
+
+            echo "${currentProjectName}镜像上传成功"
         }
     }
 
