@@ -9,7 +9,7 @@ def selectedProjects = "${project_name}".split(',')
 //def imageName = "${project_name}"
 node {
 	 stage('拉取代码d') { // for display purposes
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
+	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '9e83c03c-e263-4715-a185-e92c11437edf', url: 'https://github.com/ximen-dream/dream-rearend.git']]])
     }
 
 	//TODO "mvn -f cloudservice-common(文件路径) clean install"
